@@ -1,7 +1,9 @@
 <template>
-  <header :style="{
+  <header
+    :style="{
     backgroundColor: color?color:defaultColor
-  }">{{title}}</header>
+  }"
+  >{{title}}{{color}}{{colorProp}}</header>
 </template>
 <script>
 import { reactive } from "@vue/composition-api";
@@ -13,12 +15,21 @@ export default {
     // 颜色
     color: String
   },
-  setup() {
+  setup(p, x) {
+    window.console.log("header：setup：X：",x);
+    //console.log("header：setup：X：",x);
     const state = reactive({
-      defaultColor: "red"
+      // defaultColor: "red"
+      defaultColor: "yellow",
+      colorProp: p.color,
     });
+
+
+  
+
     return {
-      ...state
+      ...state,
+  
     };
   }
 };
