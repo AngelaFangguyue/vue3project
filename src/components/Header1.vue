@@ -23,9 +23,9 @@ export default {
       })
     });
 
-    //    const addNum = ()=>{
-    //        state.num += 1;
-    //    }
+      //  const addNum1 = ()=>{
+      //      state.num += 1;
+      //  }
 
     function addNum() {
       window.console.log("addNum");

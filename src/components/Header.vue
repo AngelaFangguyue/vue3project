@@ -3,7 +3,7 @@
     :style="{
     backgroundColor: color?color:defaultColor
   }"
-  >{{title}}{{color}}{{colorProp}}</header>
+  >{{title}}--{{color}}--{{colorProp}}</header>
 </template>
 <script>
 import { reactive } from "@vue/composition-api";
