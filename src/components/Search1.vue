@@ -1,6 +1,12 @@
 <template>
   <div>
-    <van-search v-model="value" placeholder="请输入搜索关键词" @search="onSearch(store.searchData)" @cancel="onCancel" />
+    <van-search
+      v-model="value"
+      placeholder="请输入搜索关键词"
+      @search="onSearch"
+      @cancel="onCancel"
+      @focus="onTiaozhuan"
+    />
     <hr />
     <van-search
       v-model="value1"
@@ -24,7 +30,7 @@ import { store, mutations } from "../stores/index1.js";
 import axios from "axios";
 export default {
   name: "Search1",
-  setup() {
+  setup(props, context) {
     const state = reactive({
       value: "",
       value1: ""
@@ -59,7 +65,7 @@ export default {
       axios
         .get("https://cnodejs.org/api/v1/topics")
         .then(function(response) {
-          window.console.log("在search1组件中请求成功：", response.data);
+          window.console.log("在search1组件中请求成功：", response.data.data);
         })
         .catch(function(error) {
           window.console.log("在search1组件中请求失败：", error);
@@ -68,7 +74,12 @@ export default {
     const onCancel = () => {
       window.console.log("取消搜索");
     };
-    return { ...toRefs(state), onSearch, onCancel };
+    const onTiaozhuan = () => {
+      window.console.log("context:", context);
+      context.root.$router.push({path:"search"});
+      window.console.log("当搜索框获得焦点的时候，跳转到新的界面");
+    };
+    return { ...toRefs(state), onSearch, onCancel, onTiaozhuan };
   }
 };
 </script>
